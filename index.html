@@ -3,41 +3,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clarisse | Portfolio</title>
+  <title>Clarisse Ibalin — Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #333;
+    /* CSS RESET & VARIABLES */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    h1 { color: #2c3e50; }
-    .project {
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin-top: 15px;
-      border-radius: 8px;
+
+    :root {
+      --bg-cream: #F6F4EE;
+      --bg-cream-dark: #EAE6DC;
+      --text-black: #121212;
+      --text-muted: #555555;
+      --border-black: #121212;
+      --font-heading: 'Impact', 'Arial Black', sans-serif;
+      --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-black);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      padding: 2rem;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3 {
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    /* NAVIGATION */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--border-black);
+      padding-bottom: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .brand-logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .nav-links a {
+      color: var(--text-black);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero-title h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    .hero-card {
+      background-color: var(--text-black);
+      color: var(--bg-cream);
+      padding: 2.5rem;
+      border-radius: 2px;
+    }
+
+    .hero-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    /* GRID LAYOUT (REFERENCE STYLED) */
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-black);
+      padding-bottom: 0.5rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .portfolio-card {
+      background-color: var(--bg-cream-dark);
+      border: 1px solid var(--border-black);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .portfolio-card.dark {
+      background-color: var(--text-black);
+      color: var(--bg-cream);
+    }
+
+    .card-number {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .portfolio-card.dark .card-desc {
+      color: #A0A0A0;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-top: 1px solid var(--border-black);
+      padding-top: 0.75rem;
+    }
+
+    .portfolio-card.dark .card-tag {
+      border-top: 1px solid var(--bg-cream);
+    }
+
+    /* ABOUT & CONTACT SECTION */
+    .info-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      border-top: 2px solid var(--border-black);
+      padding-top: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .info-box h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-box p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--bg-cream-dark);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-title h1 { font-size: 3rem; }
+      .info-split { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <h1>Hi, I'm Clarisse 👋</h1>
-  <p>Welcome to my portfolio! I'm currently building my website and hosted on Vercel.</p>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="brand-logo">CLARISSE IBALIN</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <h2>About Me</h2>
-  <p>Write a brief intro about yourself, your goals, or your passions here.</p>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-title">
+      <h1>PORTFOLIO</h1>
+      <p class="hero-sub">
+        Versatile Graphic Designer & Digital Content Creator blending marketing strategy with high-impact visual design.
+      </p>
+    </div>
+    <div class="hero-card">
+      <h3>CORE SERVICES</h3>
+      <p>Branding & Pubmats • Motion Graphics • Short-form Video • Commercial Layouts</p>
+    </div>
+  </section>
 
-  <h2>My Projects</h2>
-  <div class="project">
-    <h3>Project 1</h3>
-    <p>A brief description of a project or skill you want to share.</p>
-  </div>
+  <!-- PORTFOLIO GRID -->
+  <section id="work">
+    <h2 class="section-title">Selected Works</h2>
+    <div class="portfolio-grid">
 
-  <h2>Contact</h2>
-  <p>Email: example@email.com</p>
+      <!-- ITEM 1 -->
+      <div class="portfolio-card">
+        <div>
+          <div class="card-number">01. BRANDING & PROMOTIONAL</div>
+          <h3 class="card-title">ALEXArt Campaign</h3>
+          <p class="card-desc">Designed promotional publication materials (pubmats) and handled social media branding strategy to drive engagement.</p>
+        </div>
+        <div class="card-tag">Social Media & Layout Design</div>
+      </div>
+
+      <!-- ITEM 2 (DARK ACCENT CARD) -->
+      <div class="portfolio-card dark">
+        <div>
+          <div class="card-number">02. SHORT-FORM VIDEO</div>
+          <h3 class="card-title">Motion & Reels</h3>
+          <p class="card-desc">Produced short-form video edits and motion graphics for TikTok and Instagram Reels to improve audience reach.</p>
+        </div>
+        <div class="card-tag">Video Editing / CapCut</div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="portfolio-card">
+        <div>
+          <div class="card-number">03. EVENT DESIGN</div>
+          <h3 class="card-title">JRB Pixelbooth</h3>
+          <p class="card-desc">Created custom event theme layouts, invitations, and high-volume photo retouching under quick client turnaround.</p>
+        </div>
+        <div class="card-tag">Event Graphics & Photography</div>
+      </div>
+
+      <!-- ITEM 4 -->
+      <div class="portfolio-card">
+        <div>
+          <div class="card-number">04. COMMERCIAL LAYOUTS</div>
+          <h3 class="card-title">Menus & Sublimation</h3>
+          <p class="card-desc">Structured pricing displays, menus, product catalogs, and custom shirt sublimation designs for local business clients.</p>
+        </div>
+        <div class="card-tag">Print & Commercial Design</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT & CONTACT -->
+  <section id="about" class="info-split">
+    <div class="info-box">
+      <h2>ABOUT ME</h2>
+      <p>
+        With 4 years of experience across digital content creation and visual design, I combine creative execution with a business-driven mindset in Financial Management.
+      </p>
+      <p>
+        Proficient in Photoshop, CapCut, Lightroom, Canva, and social media grid planning.
+      </p>
+    </div>
+    <div class="info-box" id="contact">
+      <h2>LET'S CONNECT</h2>
+      <p><strong>Location:</strong> Lucena City, Quezon Province, Philippines</p>
+      <p><strong>Email:</strong> clarisseibalinmandela@gmail.com</p>
+      <p><strong>Phone:</strong> +63 916 774 1185</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Clarisse Ibalin. All Rights Reserved.
+  </footer>
 
 </body>
 </html>
